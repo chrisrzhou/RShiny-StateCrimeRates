@@ -1,7 +1,7 @@
 # State Crime Rates Explorer
 
 ## About
-The [Uniform Crime Reporting (UCR))](http://www.fbi.gov/about-us/cjis/ucr/) is an online resource for crime statistics produced by the Federal Bureau Investigation (FBI).
+The [Uniform Crime Reporting (UCR)](http://www.fbi.gov/about-us/cjis/ucr/) is an online resource for crime statistics produced by the Federal Bureau Investigation (FBI).
 
 This is a R Shiny data visualization project based on the information made available by the FBI.  You can preview the app at this [AWS EC2 instance](http://ec2-54-183-164-175.us-west-1.compute.amazonaws.com:3838/StateCrimeRates/).
 
