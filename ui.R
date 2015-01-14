@@ -24,10 +24,10 @@ shinyUI(fluidPage(
                              div(class="tab-section",
                                  h3("State-Time Heatmap"),
                                  p(class="text-small", "This section visualizes heatmap of crime rates of states over the years."),
-                                 div(class="span4",
+                                 column(4,
                                      selectInput(inputId="state_time_crimes", label="Crimes", choices=choices$crimes, selected=choices$crimes[[1]])
                                  ),
-                                 div(class="span4",
+                                 column(4,
                                      sliderInput(inputId="state_time_years_min", label="Years", min=min(choices$years), max=max(choices$years), value=min(choices$years), step=1, format="####"),
                                      sliderInput(inputId="state_time_years_max", label="", min=min(choices$years), max=max(choices$years), value=max(choices$years), step=1, format="####")
                                  ),
@@ -38,10 +38,10 @@ shinyUI(fluidPage(
                              div(class="tab-section",
                                  h3("Crime-Time Heatmap"),
                                  p(class="text-small", "This section visualizes heatmap of crime rates over time of a selected state."),
-                                 div(class="span4",
+                                 column(4,
                                      selectInput(inputId="state_crime_states", label="Year", choices=choices$states, selected=choices$states[[5]])
                                  ),
-                                 div(class="span4",
+                                 column(4,
                                      checkboxInput(inputId="show_labels", label="Show Labels", value=FALSE)
                                  ),
                                  plotOutput("state_crime_heatmap", height=400, width=750),
@@ -56,10 +56,10 @@ shinyUI(fluidPage(
                              p(class="text-small", "The number of years in the dataset provides a sample size for calculating correlation of crime rates."),
                              hr(),
                              div(class="tab-section",
-                                 div(class="span4",
+                                 column(4,
                                      selectInput(inputId="correlation_states", label="States", choices=choices$states, selected=choices$states[[5]])
                                  ),
-                                 div(class="span4",
+                                 column(4,
                                      sliderInput(inputId="correlation_years_min", label="Years", min=min(choices$years), max=max(choices$years), value=min(choices$years), step=1, format="####"),
                                      sliderInput(inputId="correlation_years_max", label="", min=min(choices$years), max=max(choices$years), value=max(choices$years), step=1, format="####")
                                  ),
