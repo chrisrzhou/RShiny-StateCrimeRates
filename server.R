@@ -21,7 +21,7 @@ shinyServer(function(input, output) {
         
         # plotting
         plot <- ggplot(df, aes(x=year, y=state, fill=value)) +
-            geom_tile(color=ifelse(df$year %in% recessions, "gold", "gray80")) + 
+            geom_tile(color=ifelse(df$year %in% recessions, "blue", "gray80")) + 
             scale_fill_gradient2(midpoint=mean(df$value), low="blue", mid="white", high="red") + 
             labs(title=sprintf("%s", input$state_time_crimes),
                  x="Year",
@@ -39,7 +39,7 @@ shinyServer(function(input, output) {
         
         # plotting
         plot <- ggplot(df, aes(x=year, y=crime, fill=value)) +
-            geom_tile(color=ifelse(df$year %in% recessions, "gold", "gray80")) + 
+            geom_tile(color=ifelse(df$year %in% recessions, "blue", "gray80")) + 
             scale_fill_gradient2(midpoint=mean(df$value), low="blue", mid="white", high="red") + 
             labs(title=sprintf("%s Crime Rates", input$state_crime_states),
                  x="Year",
