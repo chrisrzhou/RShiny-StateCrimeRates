@@ -34,6 +34,7 @@ shinyUI(fluidPage(
                                  plotOutput("state_time_heatmap", height=500, width=750),
                                  hr()
                              ),
+                             br(),
                              
                              div(class="tab-section",
                                  h3("Crime-Time Heatmap"),
