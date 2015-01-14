@@ -25,11 +25,11 @@ shinyUI(fluidPage(
                                  h3("State-Time Heatmap"),
                                  p(class="text-small", "This section visualizes heatmap of crime rates of states over the years."),
                                  column(4,
-                                     selectInput(inputId="state_time_crimes", label="Crimes", choices=choices$crimes, selected=choices$crimes[[1]])
+                                        selectInput(inputId="state_time_crimes", label="Crimes", choices=choices$crimes, selected=choices$crimes[[1]])
                                  ),
                                  column(4,
-                                     sliderInput(inputId="state_time_years_min", label="Years", min=min(choices$years), max=max(choices$years), value=min(choices$years), step=1, format="####"),
-                                     sliderInput(inputId="state_time_years_max", label="", min=min(choices$years), max=max(choices$years), value=max(choices$years), step=1, format="####")
+                                        sliderInput(inputId="state_time_years_min", label="Years", min=min(choices$years), max=max(choices$years), value=min(choices$years), step=1, format="####"),
+                                        sliderInput(inputId="state_time_years_max", label="", min=min(choices$years), max=max(choices$years), value=max(choices$years), step=1, format="####")
                                  ),
                                  plotOutput("state_time_heatmap", height=500, width=750),
                                  hr()
@@ -39,10 +39,10 @@ shinyUI(fluidPage(
                                  h3("Crime-Time Heatmap"),
                                  p(class="text-small", "This section visualizes heatmap of crime rates over time of a selected state."),
                                  column(4,
-                                     selectInput(inputId="state_crime_states", label="Year", choices=choices$states, selected=choices$states[[5]])
+                                        selectInput(inputId="state_crime_states", label="Year", choices=choices$states, selected=choices$states[[5]])
                                  ),
                                  column(4,
-                                     checkboxInput(inputId="show_labels", label="Show Labels", value=FALSE)
+                                        checkboxInput(inputId="show_labels", label="Show Labels", value=FALSE)
                                  ),
                                  plotOutput("state_crime_heatmap", height=400, width=750),
                                  hr()
@@ -57,11 +57,11 @@ shinyUI(fluidPage(
                              hr(),
                              div(class="tab-section",
                                  column(4,
-                                     selectInput(inputId="correlation_states", label="States", choices=choices$states, selected=choices$states[[5]])
+                                        selectInput(inputId="correlation_states", label="States", choices=choices$states, selected=choices$states[[5]])
                                  ),
                                  column(4,
-                                     sliderInput(inputId="correlation_years_min", label="Years", min=min(choices$years), max=max(choices$years), value=min(choices$years), step=1, format="####"),
-                                     sliderInput(inputId="correlation_years_max", label="", min=min(choices$years), max=max(choices$years), value=max(choices$years), step=1, format="####")
+                                        sliderInput(inputId="correlation_years_min", label="Years", min=min(choices$years), max=max(choices$years), value=min(choices$years), step=1, format="####"),
+                                        sliderInput(inputId="correlation_years_max", label="", min=min(choices$years), max=max(choices$years), value=max(choices$years), step=1, format="####")
                                  ),
                                  plotOutput("crime_correlations", height=500, width=750),
                                  hr()
