@@ -1,5 +1,7 @@
 # State Crime Rates Explorer
 
+------
+
 ## About
 The [Uniform Crime Reporting (UCR)](http://www.fbi.gov/about-us/cjis/ucr/) is an online resource for crime statistics produced by the Federal Bureau Investigation (FBI).
 
@@ -15,7 +17,7 @@ Throughout the application, the user is empowered with selection widgets to zoom
 - Quantify the correlation values of various kinds of crime rates within a given period of time.
 - And many more that you can analyze!
 
-
+------
 
 ## Visualizations:
 - **Heatmaps:** Series of heatmaps visualizing crime rates in states. Major recession periods are highlighted in gold.
@@ -25,6 +27,7 @@ Throughout the application, the user is empowered with selection widgets to zoom
     - (b) "Violent crime rates" and "Property crime rates".
     - (c) All years.
 
+------
 
 ## Other notes:
 - Use the selection widgets to help highlight specific data subsets of interest, and to view a different visualization based on the selected metric report.
@@ -35,7 +38,7 @@ Throughout the application, the user is empowered with selection widgets to zoom
 
 - This project/application is not affiliated with the FBI.  The work is intended as a showcase of R Shiny data visualization capabilities.  All information courtesy of FBI/UCR. Used with permission.
 
-
+------
 
 ## Resources
 - [Homepage](https://chrisrzhou.github.io/)
