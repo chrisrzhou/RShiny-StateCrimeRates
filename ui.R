@@ -7,7 +7,7 @@ shinyUI(fluidPage(
         p(class="text-small",
           a(href="https://chrisrzhou.github.io/", target="_blank", "by chrisrzhou"),
           a(href="https://github.com/chrisrzhou/RShiny-StateCrimeRates", target="_blank", icon("github")), " | ",
-          a(href="http://bl.ocks.org/chrisrzhou", target="_blank", icon("th")), " | ",
+          a(href="http://bl.ocks.org/chrisrzhou", target="_blank", icon("cubes")), " | ",
           a(href="https://www.linkedin.com/in/chrisrzhou", target="_blank", icon("linkedin"))),
         hr(),
         p(class="text-small", "State Crime Rates Visualizations.  All data is derived from the FBI's : ",
