@@ -16,13 +16,14 @@ shinyServer(function(input, output) {
         # get data from dataframe
         df <- dataframes$crimes %>%  # subset/filter df based on user selections
             filter(crime == input$state_time_crimes,
+                   state %in% input$state_time_states,
                    year >= input$state_time_years_min,
                    year <= input$state_time_years_max)
         
         # plotting
-        plot <- ggplot(df, aes(x=year, y=state, fill=value)) +
+        plot <- ggplot(df, aes(x=year, y=state_name, fill=value)) +
             geom_tile(color=ifelse(df$year %in% recessions, "blue", "gray80")) + 
-            scale_fill_gradient2(midpoint=mean(df$value), low="blue", mid="white", high="red") + 
+            scale_fill_gradient2(midpoint=mean(df$value), low="steelblue", mid="white", high="tomato") + 
             labs(title=sprintf("%s", input$state_time_crimes),
                  x="Year",
                  y="States") + 
@@ -35,12 +36,15 @@ shinyServer(function(input, output) {
     output$state_crime_heatmap <- renderPlot({
         # get data from dataframe
         df <- dataframes$crimes  %>% # subset/filter df based on user selections
-            filter(state == input$state_crime_states)
+            filter(state_name == input$state_crime_states,
+                   crime %in% input$state_crime_crimes,
+                   year >= input$state_crime_years_min,
+                   year <= input$state_crime_years_max)
         
         # plotting
         plot <- ggplot(df, aes(x=year, y=crime, fill=value)) +
             geom_tile(color=ifelse(df$year %in% recessions, "blue", "gray80")) + 
-            scale_fill_gradient2(midpoint=mean(df$value), low="blue", mid="white", high="red") + 
+            scale_fill_gradient2(midpoint=mean(df$value), low="steelblue", mid="white", high="tomato") + 
             labs(title=sprintf("%s Crime Rates", input$state_crime_states),
                  x="Year",
                  y="Crimes") + 
@@ -57,7 +61,7 @@ shinyServer(function(input, output) {
     output$crime_correlations <- renderPlot({
         # get data from dataframe
         df <- dataframes$crimes  %>% # subset/filter df based on user selections
-            filter(state == input$correlation_states,
+            filter(state_name == input$correlation_states,
                    year >= input$correlation_years_min,
                    year <= input$correlation_years_max) %>%
             select(-state) %>%  # remove non-numeric for calculating correlation matrix

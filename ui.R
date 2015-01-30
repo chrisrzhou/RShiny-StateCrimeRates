@@ -1,11 +1,12 @@
 shinyUI(fluidPage(
+    tags$head(tags$link(rel="stylesheet", type="text/css", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css")),
     tags$head(tags$link(rel="stylesheet", type="text/css", href="app.css")),
     
-    titlePanel("State Crime Rates"),
+    titlePanel("State Crime Rates Explorer"),
     
     mainPanel(
         p(class="text-small",
-          a(href="https://chrisrzhou.github.io/", target="_blank", "by chrisrzhou"),
+          a(href="http://chrisrzhou.datanaut.io/", target="_blank", "by chrisrzhou"),
           a(href="https://github.com/chrisrzhou/RShiny-StateCrimeRates", target="_blank", icon("github")), " | ",
           a(href="http://bl.ocks.org/chrisrzhou", target="_blank", icon("cubes")), " | ",
           a(href="https://www.linkedin.com/in/chrisrzhou", target="_blank", icon("linkedin"))),
@@ -21,32 +22,37 @@ shinyUI(fluidPage(
                              p(class="text-small", "Three colors are used to display overall values of the data subset: blue (below average), red (above average), white (average)."),
                              p(class="text-small", "Major recession periods are outlined in blue"),
                              hr(),
-                             div(class="tab-section",
-                                 h3("State-Time Heatmap"),
-                                 p(class="text-small", "This section visualizes heatmap of crime rates of states over the years."),
-                                 column(4,
-                                        selectInput(inputId="state_time_crimes", label="Crimes", choices=choices$crimes, selected=choices$crimes[[1]])
+                             h3("State-Time Heatmap"),
+                             p(class="text-small", "This section visualizes heatmap of crime rates of states over the years."),
+                             fluidRow(
+                                 column(3,
+                                        selectInput(inputId="state_time_crimes", label="Select Crimes", choices=choices$crimes, selected=choices$crimes[[1]]),
+                                        sliderInput(inputId="state_time_years_min", label="Filter Years", min=min(choices$years), max=max(choices$years), value=min(choices$years), step=1, format="####"),
+                                        sliderInput(inputId="state_time_years_max", label="", min=min(choices$years), max=max(choices$years), value=max(choices$years), step=1, format="####"),
+                                        checkboxGroupInput(inputId="state_time_states", label="Select States", choices=choices$states, selected=choices$states, inline=TRUE)
                                  ),
-                                 column(4,
-                                        sliderInput(inputId="state_time_years_min", label="Years", min=min(choices$years), max=max(choices$years), value=min(choices$years), step=1, format="####"),
-                                        sliderInput(inputId="state_time_years_max", label="", min=min(choices$years), max=max(choices$years), value=max(choices$years), step=1, format="####")
-                                 ),
-                                 plotOutput("state_time_heatmap", height=500, width=750),
-                                 hr()
+                                 column(9,
+                                        plotOutput("state_time_heatmap", height=500, width="auto")
+                                 )
                              ),
+                             hr(),
                              
-                             div(class="tab-section",
-                                 h3("Crime-Time Heatmap"),
-                                 p(class="text-small", "This section visualizes heatmap of crime rates over time of a selected state."),
-                                 column(4,
-                                        selectInput(inputId="state_crime_states", label="Year", choices=choices$states, selected=choices$states[[5]])
+                             
+                             h3("Crime-Time Heatmap"),
+                             p(class="text-small", "This section visualizes heatmap of crime rates over time of a selected state."),
+                             fluidRow(
+                                 column(3,
+                                        checkboxInput(inputId="show_labels", label="Show Labels", value=FALSE),
+                                        selectInput(inputId="state_crime_states", label="Select State", choices=choices$state_names, selected=choices$state_names[[5]]),
+                                        sliderInput(inputId="state_crime_years_min", label="Filter Years", min=min(choices$years), max=max(choices$years), value=min(choices$years), step=1, format="####"),
+                                        sliderInput(inputId="state_crime_years_max", label="", min=min(choices$years), max=max(choices$years), value=max(choices$years), step=1, format="####"),
+                                        checkboxGroupInput(inputId="state_crime_crimes", label="Select Crimes", choices=choices$crimes, selected=choices$crimes)
                                  ),
-                                 column(4,
-                                        checkboxInput(inputId="show_labels", label="Show Labels", value=FALSE)
-                                 ),
-                                 plotOutput("state_crime_heatmap", height=400, width=750),
-                                 hr()
-                             )
+                                 column(9,
+                                        plotOutput("state_crime_heatmap", height=400, width="auto")     
+                                 )
+                             ),
+                             hr()
                              
                     ),
                     
@@ -55,17 +61,17 @@ shinyUI(fluidPage(
                              p(class="text-small", "Correlation matrix of various types of crimes.  Use the widgets to filter a data subset."),
                              p(class="text-small", "The number of years in the dataset provides a sample size for calculating correlation of crime rates."),
                              hr(),
-                             div(class="tab-section",
-                                 column(4,
-                                        selectInput(inputId="correlation_states", label="States", choices=choices$states, selected=choices$states[[5]])
-                                 ),
-                                 column(4,
-                                        sliderInput(inputId="correlation_years_min", label="Years", min=min(choices$years), max=max(choices$years), value=min(choices$years), step=1, format="####"),
+                             fluidRow(
+                                 column(3,
+                                        selectInput(inputId="correlation_states", label="Select State", choices=choices$state_names, selected=choices$state_names[[5]]),
+                                        sliderInput(inputId="correlation_years_min", label="Filter Years", min=min(choices$years), max=max(choices$years), value=min(choices$years), step=1, format="####"),
                                         sliderInput(inputId="correlation_years_max", label="", min=min(choices$years), max=max(choices$years), value=max(choices$years), step=1, format="####")
                                  ),
-                                 plotOutput("crime_correlations", height=500, width=750),
-                                 hr()
-                             )
+                                 column(9,
+                                        plotOutput("crime_correlations", height=500, width="auto")
+                                 )
+                             ),
+                             hr()
                     ),
                     
                     tabPanel("Data",
