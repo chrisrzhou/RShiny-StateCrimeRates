@@ -17,8 +17,8 @@ shinyServer(function(input, output) {
         df <- dataframes$crimes %>%  # subset/filter df based on user selections
             filter(crime == input$state_time_crimes,
                    state %in% input$state_time_states,
-                   year >= input$state_time_years_min,
-                   year <= input$state_time_years_max)
+                   year >= input$state_time_years[1],
+                   year <= input$state_time_years[2])
         
         # plotting
         plot <- ggplot(df, aes(x=year, y=state_name, fill=value)) +
@@ -28,7 +28,8 @@ shinyServer(function(input, output) {
                  x="Year",
                  y="States") + 
             theme(panel.background=element_blank(),
-                  axis.text.x=element_text(angle=45, hjust=1))
+                  axis.text.x=element_text(angle=45, hjust=1),
+                  axis.ticks.y=element_blank())
         return(plot)
     })
     
@@ -38,8 +39,8 @@ shinyServer(function(input, output) {
         df <- dataframes$crimes  %>% # subset/filter df based on user selections
             filter(state_name == input$state_crime_states,
                    crime %in% input$state_crime_crimes,
-                   year >= input$state_crime_years_min,
-                   year <= input$state_crime_years_max)
+                   year >= input$state_crime_years[1],
+                   year <= input$state_crime_years[2])
         
         # plotting
         plot <- ggplot(df, aes(x=year, y=crime, fill=value)) +
@@ -49,7 +50,8 @@ shinyServer(function(input, output) {
                  x="Year",
                  y="Crimes") + 
             theme(panel.background=element_blank(),
-                  axis.text.x=element_text(angle=45, hjust=1))
+                  axis.text.x=element_text(angle=45, hjust=1),
+                  axis.ticks.y=element_blank())
         
         if(input$show_labels) {
             plot <- plot + 
@@ -62,8 +64,8 @@ shinyServer(function(input, output) {
         # get data from dataframe
         df <- dataframes$crimes  %>% # subset/filter df based on user selections
             filter(state_name == input$correlation_states,
-                   year >= input$correlation_years_min,
-                   year <= input$correlation_years_max) %>%
+                   year >= input$correlation_years[1],
+                   year <= input$correlation_years[2]) %>%
             select(-state) %>%  # remove non-numeric for calculating correlation matrix
             dcast(year ~ crime) %>% # dcast from long to wide format
             select(-year)

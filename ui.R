@@ -17,17 +17,16 @@ shinyUI(fluidPage(
         tabsetPanel(id="tabset",
                     tabPanel("Heatmaps",
                              h2("Heatmaps"),
-                             p(class="text-small", "Series of heatmaps visualizing crime rates in states."),
+                             p(class="text-small", "Series of heatmaps visualizing crime rates in states.  Major recession periods are outlined in blue"),
                              p(class="text-small", "Three colors are used to display overall values of the data subset: blue (below average), red (above average), white (average)."),
-                             p(class="text-small", "Major recession periods are outlined in blue"),
                              hr(),
                              h3("State-Time Heatmap"),
                              p(class="text-small", "This section visualizes heatmap of crime rates of states over the years."),
                              fluidRow(
                                  column(3,
                                         selectInput(inputId="state_time_crimes", label="Select Crimes", choices=choices$crimes, selected=choices$crimes[[1]]),
-                                        sliderInput(inputId="state_time_years_min", label="Filter Years", min=min(choices$years), max=max(choices$years), value=min(choices$years), step=1, format="####"),
-                                        sliderInput(inputId="state_time_years_max", label="", min=min(choices$years), max=max(choices$years), value=max(choices$years), step=1, format="####"),
+                                        sliderInput(inputId="state_time_years", label="Filter Years", min=min(choices$years), max=max(choices$years),
+                                                    value=c(min(choices$years), max(choices$years)), step=1, format="####"),
                                         checkboxGroupInput(inputId="state_time_states", label="Select States", choices=choices$states, selected=choices$states, inline=TRUE)
                                  ),
                                  column(9,
@@ -43,8 +42,8 @@ shinyUI(fluidPage(
                                  column(3,
                                         checkboxInput(inputId="show_labels", label="Show Labels", value=FALSE),
                                         selectInput(inputId="state_crime_states", label="Select State", choices=choices$state_names, selected=choices$state_names[[5]]),
-                                        sliderInput(inputId="state_crime_years_min", label="Filter Years", min=min(choices$years), max=max(choices$years), value=min(choices$years), step=1, format="####"),
-                                        sliderInput(inputId="state_crime_years_max", label="", min=min(choices$years), max=max(choices$years), value=max(choices$years), step=1, format="####"),
+                                        sliderInput(inputId="state_crime_years", label="Filter Years", min=min(choices$years), max=max(choices$years),
+                                                    value=c(min(choices$years), max(choices$years)), step=1, format="####"),
                                         checkboxGroupInput(inputId="state_crime_crimes", label="Select Crimes", choices=choices$crimes, selected=choices$crimes)
                                  ),
                                  column(9,
@@ -63,8 +62,8 @@ shinyUI(fluidPage(
                              fluidRow(
                                  column(3,
                                         selectInput(inputId="correlation_states", label="Select State", choices=choices$state_names, selected=choices$state_names[[5]]),
-                                        sliderInput(inputId="correlation_years_min", label="Filter Years", min=min(choices$years), max=max(choices$years), value=min(choices$years), step=1, format="####"),
-                                        sliderInput(inputId="correlation_years_max", label="", min=min(choices$years), max=max(choices$years), value=max(choices$years), step=1, format="####")
+                                        sliderInput(inputId="correlation_years", label="Filter Years", min=min(choices$years), max=max(choices$years),
+                                                    value=c(min(choices$years), max(choices$years)), step=1, format="####")
                                  ),
                                  column(9,
                                         plotOutput("crime_correlations", height=500, width="auto")
